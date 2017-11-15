@@ -46,8 +46,8 @@
             <hr>
 
             <div class="panel-body" style="text-align: center;background-color: #fff;margin: 0px">
-                <div class="block"><a href="UseZiLiao.jsp"><span class="glyphicon glyphicon-cog"></span>我的资料</a></div>		<!--传递id过去-->
-                <div class="block"><a href="UserPasswd.jsp"><span class="glyphicon glyphicon-cog"></span>修改密码</a></div>
+                <div class="block"><a href="ZiLiao.php"><span class="glyphicon glyphicon-cog"></span>我的资料</a></div>		<!--传递id过去-->
+                <div class="block"><a href="passwd.php"><span class="glyphicon glyphicon-cog"></span>修改密码</a></div>
                 <div class="block"><a href=""><span class="glyphicon glyphicon-cog"></span>我的发帖</a></div>
                 <div class="block"></div>
             </div>

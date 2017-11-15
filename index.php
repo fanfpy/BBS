@@ -21,7 +21,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
             <h3 class="panel-title" style="text-align: center;">
-            <a href="login.html" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
+            <a href="login.php" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
             <a href="#"><span class="glyphicon glyphicon-home"></span></a>
             <a href="#" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>
         </h3>
