@@ -33,9 +33,9 @@
     <div class="panel-heading">
         <!--标题-->
         <h3 class="panel-title" style="text-align: center;">
-            <a href="login.html" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
+            <a href="../edit.php" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
             <a href="#"><span class="glyphicon glyphicon-home"></span></a>
-            <a href="#" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>
+            <a href="../edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>
         </h3>
     </div>
     <div class="panel-body" style="padding: 10px">
