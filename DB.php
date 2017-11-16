@@ -9,7 +9,6 @@
 
 class DB
 {
-    private static $co;
     public static function getCon()
 	{
         try
@@ -23,4 +22,9 @@ class DB
         }
     }
 }
+
 $co=DB::getCon();
+$sql="select *from contents";
+$st=$co->query(sql);
+$list=$st->fetchAll();
+print_r($list);

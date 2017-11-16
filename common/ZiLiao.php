@@ -34,7 +34,7 @@
         <!--标题-->
         <h3 class="panel-title" style="text-align: center;">
             <a href="../edit.php" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
-            <a href="#"><span class="glyphicon glyphicon-home"></span></a>
+            <a href="../index.php"><span class="glyphicon glyphicon-home"></span></a>
             <a href="../edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>
         </h3>
     </div>

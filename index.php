@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>主页</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -34,23 +35,23 @@
                         <a href="#">主页</a> <span class="divider">/</span>
                     </li>
                     <li>
-                        <a href="#">吉泽明步</a> <span class="divider">/</span>
+                        <a href="#">测试</a> <span class="divider">/</span>
                     </li>
                     <li class="active">
-                        大桥未久
+                        测试
                     </li>
                 </ul>
             </div>
             <div class="panel-body">
                 <blockquote>
                     <p>
-                        帖子标题
+                        <a href="archives.php">帖子标题</a>
                     </p> <small>发布者 <cite>admin</cite></small>
                 </blockquote>
                 <hr>
                 <blockquote>
                     <p>
-                        标题2
+                        <a href="archives.php">帖子标题</a>
                     </p> <small>发布者 <cite>admin</cite></small>
                 </blockquote>
             </div>
