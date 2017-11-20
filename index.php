@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>主页</title>
+    <?php
+    require_once "DataBase.php";
+    ?>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -43,17 +46,30 @@
                 </ul>
             </div>
             <div class="panel-body">
-                <blockquote>
-                    <p>
-                        <a href="archives.php">帖子标题</a>
-                    </p> <small>发布者 <cite>admin</cite></small>
-                </blockquote>
-                <hr>
-                <blockquote>
-                    <p>
-                        <a href="archives.php">帖子标题</a>
-                    </p> <small>发布者 <cite>admin</cite></small>
-                </blockquote>
+                <?php
+                $sql_contents ="SELECT * FROM contents";
+                $sql_user ="SELECT * FROM user";
+                foreach ($conn->query($sql_contents)as $row_contents){ ?>
+                    <blockquote>
+                        <p>
+                         <?php
+                         $id=$row_contents['Id'];
+                         echo "<a href=archives.php?id=$id>".$row_contents['title']."</a>";
+                         ?>
+                                </p> <small>发布者 <cite>
+                                <?php
+                                foreach ($conn->query($sql_user)as $row_user){
+                                    if($row_contents['user_id']==$row_user['Id']){
+                                        echo '  '.$row_user['UserName'];
+                                        break;
+                                    }
+                                }
+                                ?>
+                            </cite></small>
+                    </blockquote>
+                    <hr>
+                <?php }
+                ?>
             </div>
         </div>
     </div>

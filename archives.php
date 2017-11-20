@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>用户注册</title>
+    <?php require_once "DataBase.php"?>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -25,6 +26,9 @@
  * Date: 2017/11/16
  * Time: 10:37
  */
+$sql_contents ="SELECT * FROM contents";
+$sql_user ="SELECT * FROM user";
+$sql_comment="SELECT *FROM comment";
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -37,16 +41,31 @@
     </div>
     <div class="panel-body" style="padding: 10px">
         <div class="panel panel-default" style="margin-bottom: 10px">
-<!--            <div class="panel-heading">-->
-<!--                <h3 class="panel-title">-->
-<!--                面板标题-->
-<!--                </h3>-->
-<!--            </div>-->
             <div class="panel-body">
-                <h2>帖子标题</h2>
-                <small>发帖人 ：admin</small>
+                <h2><?php
+                    foreach ($conn->query($sql_contents)as $row_contents){
+                        if($row_contents['Id']==$_GET['id']){
+                            echo $row_contents['title'];
+
+                        ?>
+                    </h2>
+                <small>发帖人 ：<?php
+                    foreach ($conn->query($sql_user)as $row_user){
+                        if($row_contents['user_id']==$row_user['Id']){
+                            echo '  '.$row_user['UserName'];
+                            break;
+                        }
+                    }
+                    ?></small>
                 <hr>
-                <p>帖子内容</p>
+                <p><?php
+                    echo $row_contents['contents_str'];
+                    ?></p>
+                <?php
+                    }
+                }
+               ?>
+
             </div>
         </div>
     </div>

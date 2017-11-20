@@ -6,7 +6,7 @@
  * Time: 21:18
  */
 require_once '../model/user.php';
-include_once '../MysqlClass.php';
+require_once '../MysqlClass.php';
 class editUser
 {
     function add(user $u){
@@ -22,7 +22,7 @@ class editUser
     function del(user $u){
         $id=$u->getId();
         $con=MysqlClass::getCon();
-        $sql="DELETE FROM USER WHERE ID = $id";
+        $sql="DELETE FROM USER WHERE ID = ".$id;
         $con->exec($sql);
     }
 
