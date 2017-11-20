@@ -12,4 +12,3 @@ try
 {
     die('连接错误'.$e->getMessage());
 }
-?>

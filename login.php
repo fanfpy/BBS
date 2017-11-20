@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>用户登录</title>
+    <?php require_once "DataBase.php";
+    $sql_user="select *from user"
+    ?>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -18,6 +21,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="background: #eeeef2">
+<?php
+session_start();
+@$name=$_POST['name'];
+@$passwd=$_POST['passwd'];
+if ($name!=null&&$passwd!=null){
+    foreach ($conn->query($sql_user)as $row_user){
+        if ($row_user['UserName']==$name&&$row_user['UserPasswd']==$passwd){
+            $_SESSION['name']=$name;
+            $_SESSION['pas']=$passwd;
+            header("Location:common/index.php");
+            break;
+        }
+    }
+}
+?>
 <div class="panel panel-default">
     <div class="panel-heading">
             <h3 class="panel-title" style="text-align: center;">
@@ -34,14 +52,14 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <form action="common/index.php" method="post">
+                <form action="login.php" method="post">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="text" class="form-control" placeholder="邮箱">
+                        <input type="text" class="form-control" placeholder="邮箱" name="name">
                     </div><br/>
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        <input type="password" class="form-control" placeholder="密码">
+                        <input type="password" class="form-control" placeholder="密码" name="passwd">
                     </div><br/>
                     <input type="submit" class="btn btn-primary btn-block" value="登陆"><br>
                 </form>

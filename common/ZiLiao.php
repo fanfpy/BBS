@@ -27,6 +27,18 @@
  * Date: 2017/11/15
  * Time: 23:34
  */
+require_once '../DataBase.php';
+session_start();
+$sql_user="select *from user";
+foreach ($conn->query($sql_user) as $row_user){
+    if ($row_user['UserName']==$_SESSION['name']){
+        $name=$_SESSION['name'];
+        $nick=$row_user['nickname'];
+        $jinbei=$row_user['UserJiBie'];
+        $date=$row_user['user_date'];
+        break;
+    }
+}
 ?>
 
 <div class="panel panel-default">
@@ -49,19 +61,19 @@
                 <table class="table table-hover" style="margin-bottom: 0px">
                     <tr>
                         <td>用户名</td>
-                        <td style="text-align: right">测试</td>
+                        <td style="text-align: right"><?php echo $nick?></td>
                     </tr>
                     <tr>
                         <td>邮箱</td>
-                        <td style="text-align: right">测试</td>
+                        <td style="text-align: right"><?php echo $name?></td>
                     </tr>
                     <tr>
                         <td>用户级别</td>
-                        <td style="text-align: right">测试</td>
+                        <td style="text-align: right"><?php echo $jinbei?></td>
                     </tr>
                     <tr>
                         <td>创建时间</td>
-                        <td style="text-align: right">测试</td>
+                        <td style="text-align: right"><?php echo $date?></td>
                     </tr>
                     <tr>
                         <td>帖子数</td>

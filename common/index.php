@@ -41,7 +41,10 @@
         <div class="panel panel-default" style="margin-bottom: 10px">
                 <div style="text-align: center">
                     <img style="width: 60px; height: 60px;margin-top: auto;margin-top: 20px"  src="">
-                    <h3>用户名</h3>
+                    <h3><?php
+                        session_start();
+                       echo $_SESSION['name'];
+                        ?></h3>
                 </div>
             <hr>
 

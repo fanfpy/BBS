@@ -34,15 +34,18 @@ $sql_comment="SELECT *FROM comment";
     <div class="panel-heading">
         <!--标题-->
         <h3 class="panel-title" style="text-align: center;">
-            <a href="login.html" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
-            <a href="#"><span class="glyphicon glyphicon-home"></span></a>
-            <a href="#" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>
+            <a href="login.php" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
+            <a href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+            <a href="edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>
         </h3>
     </div>
+
     <div class="panel-body" style="padding: 10px">
         <div class="panel panel-default" style="margin-bottom: 10px">
             <div class="panel-body">
-                <h2><?php
+                <h2>
+                    <?php
+                    $row_contents=null;
                     foreach ($conn->query($sql_contents)as $row_contents){
                         if($row_contents['Id']==$_GET['id']){
                             echo $row_contents['title'];
@@ -62,13 +65,22 @@ $sql_comment="SELECT *FROM comment";
                     echo $row_contents['contents_str'];
                     ?></p>
                 <?php
+                break;
                     }
                 }
                ?>
 
             </div>
         </div>
+        <ul class="list-group">
+            <?php
+            foreach ($conn->query($sql_comment)as $row_comment){
+                if ($row_comment['contents_id']==$row_contents['Id']){
+                    echo '<li class="list-group-item">'.$row_comment['comment_str'].'</li>';
+                }
+            }
+            ?>
+        </ul>
     </div>
-</div>
 </body>
 </html>
