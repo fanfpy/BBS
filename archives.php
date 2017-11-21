@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>用户注册</title>
-    <?php require_once "DataBase.php"?>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -26,6 +25,8 @@
  * Date: 2017/11/16
  * Time: 10:37
  */
+require_once "DataBase.php";
+session_start();
 $sql_contents ="SELECT * FROM contents";
 $sql_user ="SELECT * FROM user";
 $sql_comment="SELECT *FROM comment";
@@ -36,7 +37,9 @@ $sql_comment="SELECT *FROM comment";
         <h3 class="panel-title" style="text-align: center;">
             <a href="login.php" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
             <a href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-            <a href="edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>
+            <?php if ($_SESSION!=null)             //假如session里有值 ，显示右上角的编辑
+                echo '<a href="edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>'
+            ?>
         </h3>
     </div>
 
@@ -49,13 +52,12 @@ $sql_comment="SELECT *FROM comment";
                     foreach ($conn->query($sql_contents)as $row_contents){
                         if($row_contents['Id']==$_GET['id']){
                             echo $row_contents['title'];
-
                         ?>
                     </h2>
-                <small>发帖人 ：<?php
+                <small><?php
                     foreach ($conn->query($sql_user)as $row_user){
                         if($row_contents['user_id']==$row_user['Id']){
-                            echo '  '.$row_user['UserName'];
+                            echo '  '.$row_user['nickname'].'   '.$row_contents['date'];
                             break;
                         }
                     }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>用户注册</title>
+    <title>用户主页</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -43,7 +43,9 @@
                     <img style="width: 60px; height: 60px;margin-top: auto;margin-top: 20px"  src="">
                     <h3><?php
                         session_start();
-                       echo $_SESSION['name'];
+                        if ($_SESSION!=null){
+                            echo $_SESSION['name'];
+                        }else header("Location:../");
                         ?></h3>
                 </div>
             <hr>
@@ -55,6 +57,9 @@
                 <div class="block"></div>
             </div>
         </div>
+        <form action="../" method="post">
+            <input type="submit" class="bstn btn-primary btn-block" name="clean" value="退出登录">
+        </form>
     </div>
 </div>
 </body>

@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>主页</title>
-    <?php
-    require_once "DataBase.php";
-    ?>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -21,13 +18,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="background: #eeeef2">
-
+<?php
+require_once "DataBase.php";
+session_start();
+$sql_contents ="SELECT * FROM contents ORDER BY Id DESC ;";
+$sql_user ="SELECT * FROM user";
+if($_POST!=null){
+    session_destroy();
+//    die(session_destroy().$_GET['clean']);
+}
+?>
 <div class="panel panel-default">
     <div class="panel-heading">
             <h3 class="panel-title" style="text-align: center;">
             <a href="login.php" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
             <a href="#"><span class="glyphicon glyphicon-home"></span></a>
-            <a href="edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>
+                <?php if ($_SESSION!=null)             //假如session里有值 ，显示右上角的编辑
+                    echo '<a href="edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>'
+                ?>
         </h3>
     </div>
     <div class="panel-body">
@@ -47,8 +55,6 @@
             </div>
             <div class="panel-body">
                 <?php
-                $sql_contents ="SELECT * FROM contents";
-                $sql_user ="SELECT * FROM user";
                 foreach ($conn->query($sql_contents)as $row_contents){ ?>
                     <blockquote>
                         <p>
@@ -56,11 +62,12 @@
                          $id=$row_contents['Id'];
                          echo "<a href=archives.php?id=$id>".$row_contents['title']."</a>";
                          ?>
-                                </p> <small>发布者 <cite>
+                                </p> <small>
+                            <cite>
                                 <?php
                                 foreach ($conn->query($sql_user)as $row_user){
                                     if($row_contents['user_id']==$row_user['Id']){
-                                        echo '  '.$row_user['UserName'];
+                                        echo '  '.$row_user['nickname'].'   '.$row_contents['date'];
                                         break;
                                     }
                                 }

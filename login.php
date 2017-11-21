@@ -23,15 +23,21 @@
 <body style="background: #eeeef2">
 <?php
 session_start();
-@$name=$_POST['name'];
-@$passwd=$_POST['passwd'];
-if ($name!=null&&$passwd!=null){
-    foreach ($conn->query($sql_user)as $row_user){
-        if ($row_user['UserName']==$name&&$row_user['UserPasswd']==$passwd){
-            $_SESSION['name']=$name;
-            $_SESSION['pas']=$passwd;
-            header("Location:common/index.php");
-            break;
+
+if ($_SESSION!=null){
+    header("Location:common/index.php");
+}else{
+    @$name=$_POST['name'];
+    @$passwd=$_POST['passwd'];
+    if ($name!=null&&$passwd!=null){
+        foreach ($conn->query($sql_user)as $row_user){
+            if ($row_user['UserName']==$name&&$row_user['UserPasswd']==$passwd){
+                $_SESSION['name']=$name;
+                $_SESSION['pas']=$passwd;
+                $conn=null;   //关闭数据库连接
+                header("Location:common/index.php");
+                break;
+            }
         }
     }
 }
@@ -41,7 +47,9 @@ if ($name!=null&&$passwd!=null){
             <h3 class="panel-title" style="text-align: center;">
                 <a href="login.php" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
                 <a href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-                <a href="edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>
+                <?php if ($_SESSION!=null)            //假如session里有值 ，显示右上角的编辑
+                    echo '<a href="edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>'
+                ?>
             </h3>
     </div>
     <div class="panel-body" style="padding: 10px">

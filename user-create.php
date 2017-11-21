@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>用户注册</title>
+    <?php require_once 'DataBase.php'?>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -18,6 +19,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="background: #eeeef2">
+<?php
+session_start();
+if($_POST!=null){
+    $nick=$_POST['nick'];
+    $name=$_POST['name'];
+    $pas=$_POST['passwd'];
+    $date=date("Y-m-d");
+    $sql_user="INSERT INTO user VALUES (NULL ,'$name','$pas','$nick','0',NULL ,'$date')";
+    $conn->query($sql_user) or die($sql_user);
+    $_SESSION['name']=$name;
+    $_SESSION['pas']=$pas;
+    $conn=null;            //关闭数据库连接
+    header("localhost:index.php");
+}
+?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title" style="text-align: center;">
@@ -34,18 +50,18 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <form action="#" method="post">
+                <form action="user-create.php" method="post">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="text" class="form-control" placeholder="昵称">
+                        <input type="text" class="form-control" placeholder="昵称" name="nick">
                     </div><br/>
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                        <input type="text" class="form-control" placeholder="邮箱">
+                        <input type="text" class="form-control" placeholder="邮箱" name="name">
                     </div><br/>
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        <input type="password" class="form-control" placeholder="密码">
+                        <input type="password" class="form-control" placeholder="密码" name="passwd">
                     </div><br/>
                     <input type="submit" class="btn btn-primary btn-block" value="注册"><br>
                 </form>
