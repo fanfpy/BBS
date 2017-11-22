@@ -23,8 +23,8 @@ require_once "DataBase.php";
 session_start();
 $sql_contents ="SELECT * FROM contents ORDER BY Id DESC ;";
 $sql_user ="SELECT * FROM user";
-if($_POST!=null){
-    session_destroy();
+if(!empty($_POST['clean'])){
+    session_destroy();            //清除session
 //    die(session_destroy().$_GET['clean']);
 }
 ?>
@@ -59,7 +59,7 @@ if($_POST!=null){
                     <blockquote>
                         <p>
                          <?php
-                         $id=$row_contents['Id'];
+                         $id=$row_contents['Id'];     //传递帖子的id
                          echo "<a href=archives.php?id=$id>".$row_contents['title']."</a>";
                          ?>
                                 </p> <small>

@@ -21,16 +21,17 @@
 <body style="background: #eeeef2">
 <?php
 session_start();
-if($_POST!=null){
+if(!empty($_POST['sub'])){
     $nick=$_POST['nick'];
     $name=$_POST['name'];
     $pas=$_POST['passwd'];
-    $date=date("Y-m-d");
+    $date=date("Y-m-d H:i:s");
     $sql_user="INSERT INTO user VALUES (NULL ,'$name','$pas','$nick','0',NULL ,'$date')";
     $conn->query($sql_user) or die($sql_user);
     $_SESSION['name']=$name;
     $_SESSION['pas']=$pas;
     $conn=null;            //关闭数据库连接
+    echo '注册成功';
     header("localhost:index.php");
 }
 ?>
@@ -63,7 +64,7 @@ if($_POST!=null){
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                         <input type="password" class="form-control" placeholder="密码" name="passwd">
                     </div><br/>
-                    <input type="submit" class="btn btn-primary btn-block" value="注册"><br>
+                    <input type="submit" class="btn btn-primary btn-block" value="注册" name="sub"><br>
                 </form>
             </div>
         </div>

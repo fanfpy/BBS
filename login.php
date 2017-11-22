@@ -29,9 +29,9 @@ if ($_SESSION!=null){
 }else{
     @$name=$_POST['name'];
     @$passwd=$_POST['passwd'];
-    if ($name!=null&&$passwd!=null){
+    if (!empty($_POST['sub'])){                             //判空
         foreach ($conn->query($sql_user)as $row_user){
-            if ($row_user['UserName']==$name&&$row_user['UserPasswd']==$passwd){
+            if ($row_user['UserName']==$name&&$row_user['UserPasswd']==$passwd){        //密码和账号都相等
                 $_SESSION['name']=$name;
                 $_SESSION['pas']=$passwd;
                 $conn=null;   //关闭数据库连接
@@ -39,6 +39,7 @@ if ($_SESSION!=null){
                 break;
             }
         }
+        echo "<p color='red'>账号或密码错误</p>";
     }
 }
 ?>
@@ -69,7 +70,7 @@ if ($_SESSION!=null){
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                         <input type="password" class="form-control" placeholder="密码" name="passwd">
                     </div><br/>
-                    <input type="submit" class="btn btn-primary btn-block" value="登陆"><br>
+                    <input type="submit" class="btn btn-primary btn-block" value="登陆" name="sub"><br>
                 </form>
             </div>
         </div>

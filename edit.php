@@ -28,7 +28,7 @@
 require_once 'DataBase.php';
 session_start();
 $sql_user="select *from user";
-if($_POST!=null){
+if(!empty($_POST['sub'])){                                        //判空
     foreach ($conn->query($sql_user)as $row_user){                //通过session里存的name找到用户的id
         if ($_SESSION['name']==$row_user['UserName']){
             $user_id=$row_user['Id'];
@@ -37,7 +37,7 @@ if($_POST!=null){
     }
     $title=$_POST['title'];
     $text=$_POST['text'];
-    $date=$date=date("Y-m-d");
+    $date=$date=date("Y-m-d H:i:s");
     $sql_contents ="INSERT INTO contents VALUES (NULL ,'$user_id','0','$title','$text',NULL ,'0','$date')";
     if ($conn->exec($sql_contents)){
         header("Location:index.php");
@@ -83,7 +83,7 @@ if($_POST!=null){
 <!--                    </div><br>-->
                     <input type="text" class="form-control" placeholder="标题" name="title"><br>
                     <textarea class="form-control" rows="3" name="text"></textarea><br>
-                    <input type="submit" class="btn btn-primary btn-block" value="发帖" ><br>
+                    <input type="submit" class="btn btn-primary btn-block" value="发帖" name="sub" ><br>
                 </form>
             </div>
         </div>

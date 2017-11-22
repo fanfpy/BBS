@@ -58,7 +58,7 @@
             </div>
         </div>
         <form action="../" method="post">
-            <input type="submit" class="bstn btn-primary btn-block" name="clean" value="退出登录">
+            <input type="submit" class="btn btn-primary btn-block" value="退出登录" name="clean" ><br>
         </form>
     </div>
 </div>
