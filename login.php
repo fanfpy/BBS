@@ -27,9 +27,10 @@ session_start();
 if ($_SESSION!=null){
     header("Location:common/index.php");
 }else{
-    @$name=$_POST['name'];
-    @$passwd=$_POST['passwd'];
-    if (!empty($_POST['sub'])){                             //判空
+
+    if (!empty($_POST['sub'])){                                 //判空
+        $name=$_POST['name'];
+        $passwd=$_POST['passwd'];
         foreach ($conn->query($sql_user)as $row_user){
             if ($row_user['UserName']==$name&&$row_user['UserPasswd']==$passwd){        //密码和账号都相等
                 $_SESSION['name']=$name;
@@ -39,7 +40,7 @@ if ($_SESSION!=null){
                 break;
             }
         }
-        echo "<p color='red'>账号或密码错误</p>";
+        echo "<script>alert('密码或账号错误');</script>";
     }
 }
 ?>
@@ -49,7 +50,7 @@ if ($_SESSION!=null){
                 <a href="login.php" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
                 <a href="index.php"><span class="glyphicon glyphicon-home"></span></a>
                 <?php if ($_SESSION!=null)            //假如session里有值 ，显示右上角的编辑
-                    echo '<a href="edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>'
+                    echo '<a href="add.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>'
                 ?>
             </h3>
     </div>

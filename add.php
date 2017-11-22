@@ -40,7 +40,8 @@ if(!empty($_POST['sub'])){                                        //判空
     $date=$date=date("Y-m-d H:i:s");
     $sql_contents ="INSERT INTO contents VALUES (NULL ,'$user_id','0','$title','$text',NULL ,'0','$date')";
     if ($conn->exec($sql_contents)){
-        header("Location:index.php");
+        echo "<script>alert('发帖成功');location.href='index.php'</script>";
+        //header("Location:index.php");
     }
 }
 ?>
@@ -61,7 +62,7 @@ if(!empty($_POST['sub'])){                                        //判空
                 </h3>
             </div>
             <div class="panel-body">
-                <form action="edit.php" method="post">
+                <form action="add.php" method="post">
                     <!--    分类                -->
 <!--                    <div class="dropdown">-->
 <!--                        <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"-->

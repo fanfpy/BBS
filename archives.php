@@ -38,7 +38,7 @@ $sql_comment="SELECT *FROM comment";
             <a href="login.php" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
             <a href="index.php"><span class="glyphicon glyphicon-home"></span></a>
             <?php if ($_SESSION!=null)             //假如session里有值 ，显示右上角的编辑
-                echo '<a href="edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>'
+                echo '<a href="add.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>'
             ?>
         </h3>
     </div>
@@ -170,7 +170,8 @@ $sql_comment="SELECT *FROM comment";
             $sql_liuyan="INSERT INTO comment VALUES (NULL ,'$user_id','$contents_id','$text','$date')";      //sql给警告 emmmmm 怕sql注入
             //echo $sql_liuyan;   测试输出的sql是否正确
             $conn->exec($sql_liuyan);
-            header('Location:./index.php');
+            echo "<script>alert('评论成功');location.href='./index.php'</script>";
+            //header('Location:./index.php');
         }
         ?>
     </div>

@@ -34,7 +34,7 @@ if(!empty($_POST['clean'])){
             <a href="login.php" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
             <a href="#"><span class="glyphicon glyphicon-home"></span></a>
                 <?php if ($_SESSION!=null)             //假如session里有值 ，显示右上角的编辑
-                    echo '<a href="edit.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>'
+                    echo '<a href="add.php" style="float: right;"><span class="glyphicon glyphicon-edit"></span></a>'
                 ?>
         </h3>
     </div>
@@ -62,7 +62,9 @@ if(!empty($_POST['clean'])){
                          $id=$row_contents['Id'];     //传递帖子的id
                          echo "<a href=archives.php?id=$id>".$row_contents['title']."</a>";
                          ?>
-                                </p> <small>
+                        <p style="font-size: 16px;font-family: cursive;"><?php echo iconv_substr($row_contents['contents_str'],0,20)?></p>
+                                </p>
+                        <small>
                             <cite>
                                 <?php
                                 foreach ($conn->query($sql_user)as $row_user){
