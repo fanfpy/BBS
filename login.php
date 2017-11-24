@@ -34,7 +34,6 @@ if ($_SESSION!=null){
         foreach ($conn->query($sql_user)as $row_user){
             if ($row_user['UserName']==$name&&$row_user['UserPasswd']==$passwd){        //密码和账号都相等
                 $_SESSION['name']=$name;
-                $_SESSION['pas']=$passwd;
                 $conn=null;   //关闭数据库连接
                 header("Location:common/index.php");
                 break;

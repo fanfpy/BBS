@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>用户注册</title>
+    <title>帖子管理</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -18,6 +18,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="background: #eeeef2">
+<?php
+/*
+ * session里的name 获取id；
+ * */
+require_once '../DataBase.php';
+session_start();
+$name=$_SESSION['name'];
+$sql_user="select Id from user where UserName ='$name'";   //从session里获取Id
+foreach ($conn->query($sql_user) as $row){
+    $ID=$row['Id'];
+    break;
+}
+//print_r($as);
+//echo $as['Id'];
+$sql="select * from contents where user_id='$ID'";      //输出id对应的帖子
+//foreach ($conn->query($sql)as $row){
+//    echo $row['title'].'<br>';
+//    echo $row['contents_str'].'<br>';
+//    echo $row['date'].'<br>';
+//}
+?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <!--标题-->
@@ -42,16 +63,17 @@
                         <th>操作</th>
                     </tr>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>测试标题</td>
-                        <td><a href="#">删除</a><a href="#">编辑</a></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>测试标题</td>
-                        <td><a href="#">删除</a><a href="#">编辑</a></td>
-                    </tr>
+                    <?php
+                    foreach ($conn->query($sql)as $row) {
+                        ?>
+                        <tr>
+                            <td><?php echo $row['Id'] ?></td>
+                            <td><?php echo iconv_substr($row['title'],0,5) ?>...</td>
+                            <td><a href="#">删除</a>|<a href="#">编辑</a></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
