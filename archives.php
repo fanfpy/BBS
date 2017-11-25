@@ -30,6 +30,8 @@ session_start();
 $sql_contents ="SELECT * FROM contents";
 $sql_user ="SELECT * FROM user";
 $sql_comment="SELECT *FROM comment";
+$sql_hite="update contents set hits=hits+1 where Id=".$_GET['id'];
+$conn->exec($sql_hite);
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -57,7 +59,7 @@ $sql_comment="SELECT *FROM comment";
                 <small><?php
                     foreach ($conn->query($sql_user)as $row_user){
                         if($row_contents['user_id']==$row_user['Id']){
-                            echo '  '.$row_user['nickname'].'   '.$row_contents['date'];
+                            echo '  '.$row_user['nickname'].'   '.$row_contents['date'].'<span class="glyphicon glyphicon-eye-open"></span>'.$row_contents['hits'];
                             break;
                         }
                     }

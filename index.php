@@ -69,7 +69,7 @@ if(!empty($_POST['clean'])){
                                 <?php
                                 foreach ($conn->query($sql_user)as $row_user){
                                     if($row_contents['user_id']==$row_user['Id']){
-                                        echo '  '.$row_user['nickname'].'   '.$row_contents['date'];
+                                        echo $row_user['nickname']."&nbsp;&nbsp;".$row_contents['date'].'&nbsp;&nbsp;<span class="glyphicon glyphicon-eye-open"></span>'.$row_contents['hits'];
                                         break;
                                     }
                                 }

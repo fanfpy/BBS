@@ -38,6 +38,17 @@ $sql="select * from contents where user_id='$ID'";      //输出id对应的帖�
 //    echo $row['contents_str'].'<br>';
 //    echo $row['date'].'<br>';
 //}
+if(!empty($_POST['sub'])){
+    $ID=$_POST['id'];
+    $sql_del_contents="delete from contents where id='$ID'";        //
+    $sql_del_comment="delete from comment where contents_id='$ID'";        //
+//    echo $sql_del_contents.$sql_del_comment;
+    if ($conn->exec($sql_del_comment)||$conn->exec($sql_del_contents)){
+        echo "<script>alert('删除成功')</script>";
+    }
+//    $conn->exec($sql_del_comment).'<br>';
+//    $conn->exec($sql_del_contents);
+}
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -58,7 +69,7 @@ $sql="select * from contents where user_id='$ID'";      //输出id对应的帖�
             <div class="panel-body">
                 <table class="table table-striped">
                     <tr>
-                        <th>ID</th>
+                        <th style="width: 25%">ID</th>
                         <th>标题</th>
                         <th>操作</th>
                     </tr>
@@ -69,7 +80,12 @@ $sql="select * from contents where user_id='$ID'";      //输出id对应的帖�
                         <tr>
                             <td><?php echo $row['Id'] ?></td>
                             <td><?php echo iconv_substr($row['title'],0,5) ?>...</td>
-                            <td><a href="#">删除</a>|<a href="#">编辑</a></td>
+                            <td>
+                                <form action="MyCard.php" method="post">
+                                    <input type="hidden" name="id" value="<?php echo $row['Id'] ?>">
+                                    <input type="submit" class="btn" value="删除" name="sub">|
+                                    <a href="edit.php?id=<?php echo $row['Id']?>"><input type="button" class="btn" value="编辑"></a></td>
+                                </form>
                         </tr>
                         <?php
                     }
