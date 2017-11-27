@@ -79,7 +79,7 @@ if(!empty($_POST['sub'])){
                         ?>
                         <tr>
                             <td><?php echo $row['Id'] ?></td>
-                            <td><?php echo iconv_substr($row['title'],0,5) ?>...</td>
+                            <td><?php echo iconv_substr($row['title'],5,10) ?>...</td>
                             <td>
                                 <form action="MyCard.php" method="post">
                                     <input type="hidden" name="id" value="<?php echo $row['Id'] ?>">

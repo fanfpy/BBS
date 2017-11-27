@@ -62,7 +62,7 @@ if(!empty($_POST['clean'])){
                          $id=$row_contents['Id'];     //传递帖子的id
                          echo "<a href=archives.php?id=$id>".$row_contents['title']."</a>";
                          ?>
-                        <p style="font-size: 16px;font-family: cursive;"><?php echo iconv_substr($row_contents['contents_str'],0,20)?></p>
+                        <p style="font-size: 16px;font-family: cursive;"><?php echo iconv_substr($row_contents['contents_str'],5,25)?></p>
                                 </p>
                         <small>
                             <cite>

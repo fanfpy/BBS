@@ -46,7 +46,7 @@ if(!empty($_POST['sub'])){                                        //判空
 }
 ?>
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" style="width: auto">
         <!--标题-->
         <h3 class="panel-title" style="text-align: center;">
             <a href="login.php" style="float: left;"><span class="glyphicon glyphicon-user"></span></a>
