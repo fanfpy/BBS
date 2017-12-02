@@ -27,6 +27,7 @@ if(!empty($_POST['clean'])){
     session_destroy();            //清除session
 //    die(session_destroy().$_GET['clean']);
 }
+//echo print_r($conn->query($sql_user)->fetch()).'<br>';
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -76,10 +77,15 @@ if(!empty($_POST['clean'])){
                                 ?>
                             </cite></small>
                     </blockquote>
-                    <hr>
-                <?php }
+                    <hr style="margin: 5px">
+                <?php
+                }
                 ?>
             </div>
+            <ul class="pager" style="margin: 0px">
+                <li class="previous"><a href="#">上一页</a></li>
+                <li class="next"><a href="#">下一页</a></li>
+            </ul>
         </div>
     </div>
 </div>

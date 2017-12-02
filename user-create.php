@@ -30,8 +30,8 @@ if(!empty($_POST['sub'])){
     $conn->query($sql_user) or die($sql_user);
     $_SESSION['name']=$name;
     $_SESSION['pas']=$pas;
-    $conn=null;            //关闭数据库连接
-    echo '注册成功';
+//    $conn=null;            //关闭数据库连接
+    echo "<script>alert('注册成功');location.href='index.php';</script>";
     header("localhost:index.php");
 }
 ?>
